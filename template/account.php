@@ -34,6 +34,9 @@
             } elseif (isset($_SESSION['suc_accCreated'])) {
                 echo '<div class="account-message-container success"><p class="message">' . $_SESSION['suc_accCreated'] . '</p></div>';
                 unset($_SESSION['suc_accCreated']);
+            } elseif (isset($_SESSION['success_accDisconnect'])) {
+                echo '<div class="account-message-container success"><p class="message">' . $_SESSION['success_accDisconnect'] . '</p></div>';
+                unset($_SESSION['success_accDisconnect']);
             } ?>
 
             <div class="account-actions-container">

@@ -79,7 +79,7 @@
                     $_SESSION['id'] = $account['idUser'];
                     $_SESSION['fname'] = $account['sFirstname'];
                     // Roles could be added to the session aswell.
-                    
+
                     header('Location: template/profile.php');
                 } else {
                     $_SESSION['err_incPass'] = 'Incorrect password.';
@@ -93,7 +93,13 @@
     }
 
     function disconnectAccount() {
+        // Check whether a session already exists. If not, start one.
+        if (is_session_started() === FALSE) session_start();
+        session_destroy(); // Login out
 
+        if (is_session_started() === FALSE) session_start(); // Starting a new session to display the message.
+        $_SESSION['success_accDisconnect'] = 'You have logged out.' ;
+        header('Location: template/account.php');
     }
     
     // Checking whether a session is started or not.
