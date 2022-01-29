@@ -33,12 +33,32 @@ main .account-actions {
   padding: 0 15px;
 }
 
+main .account-actions .account-message-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0 10px 25px;
+  margin-bottom: 20px;
+  font: 0.87rem "Inter", sans-serif;
+  letter-spacing: 1px;
+  border-radius: 5px;
+}
+
+main .account-actions .error {
+  border: 1px solid #c40300;
+  background-color: #cf03001a;
+}
+
+main .account-actions .success {
+  border: 1px solid #72c96a;
+  background-color: #acffa93a;
+}
+
 main .account-actions .account-actions-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 25px 25px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  -webkit-box-shadow: #0000001a 0px 1px 2px;
+          box-shadow: #0000001a 0px 1px 2px;
   border-radius: 5px;
   background-color: #ffffff;
 }
@@ -49,8 +69,11 @@ main .account-actions .account-actions-container .account-actions-body {
 
 main .account-actions .account-actions-container .account-actions-body .action-title {
   padding: 0 0 20px 0;
+  font: 1.1rem "Inter", sans-serif;
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-align: left;
+  color: #4067f9;
 }
 
 main .account-actions .account-actions-container .account-actions-body .form-row {
@@ -65,6 +88,9 @@ main .account-actions .account-actions-container .account-actions-body .form-row
 main .account-actions .account-actions-container .account-actions-body .form-row .input-container label {
   display: block;
   text-align: left;
+  font: 0.97rem "DM Sans", sans-serif;
+  letter-spacing: 0.7px;
+  color: #525252;
 }
 
 main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=text],
@@ -72,6 +98,9 @@ main .account-actions .account-actions-container .account-actions-body .form-row
   width: 100%;
   margin: 10px 0 20px 0;
   padding: 10px 0 10px 8px;
+  font: 0.92rem "DM Sans", sans-serif;
+  letter-spacing: 0.5px;
+  color: #a7a7a7;
   outline: none;
   border: none;
   border-radius: 3px;
@@ -80,20 +109,45 @@ main .account-actions .account-actions-container .account-actions-body .form-row
   transition: all 0.2s;
 }
 
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=text]:hover, main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=text]:focus,
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=password]:hover, main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=password]:focus {
+  background-color: #e8ebfdb9;
+  color: #525252;
+}
+
 main .account-actions .account-actions-container .account-actions-body .submitBtn {
   display: block;
   width: 100%;
   margin-bottom: 15px;
   padding: 8px 0;
+  font: 0.96rem "DM Sans", sans-serif;
   outline: none;
+  border-radius: 5px;
   border: 2px solid #ecefff93;
   background-color: #ecefff1f;
+  color: #a7a7a7;
   -webkit-transition: all 0.15s;
   transition: all 0.15s;
 }
 
+main .account-actions .account-actions-container .account-actions-body .submitBtn:hover {
+  cursor: pointer;
+  border: 2px solid #4067f9;
+  background-color: #4067f9;
+  color: #ffffff;
+}
+
 main .account-actions .account-actions-container .account-actions-body .action-link {
+  font: 0.85rem "DM Sans", sans-serif;
   text-align: center;
+  text-decoration: none;
+  color: #a7a7a7;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+main .account-actions .account-actions-container .account-actions-body .action-link:hover {
+  color: #525252;
 }
 
 @media (min-width: 500px) {

@@ -2,6 +2,9 @@
 $text: 'DM Sans', sans-serif;
 $title: 'Inter', sans-serif;
 
+$text-100: #a7a7a7;
+$text-200:#525252;
+
 $ice-100: #ffffff;
 $ice-200: #fafbfdd3;
 $ice-300: #ecefff1f;
@@ -9,6 +12,10 @@ $ice-400: #ecefff93;
 $ice-500: #d0d7fc2d;
 $ice-600: #e8ebfdb9;
 $accent-100: #4067f9;
+$error-100: #cf03001a;
+$error-200: #c40300;
+$success-100: #acffa93a;
+$success-200: #72c96a;
 
 html {
     scroll-behavior: smooth;
@@ -35,11 +42,27 @@ main {
         width: 100%;
         padding: 0 15px;
 
+        .account-message-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 0 10px 25px;
+            margin-bottom: 20px;
+            font: 0.87rem $title;
+            letter-spacing: 1px;
+            border-radius: 5px;
+        } .error {
+            border: 1px solid $error-200;
+            background-color: $error-100;
+        } .success {
+            border: 1px solid $success-200;
+            background-color: $success-100;
+        }
+
         .account-actions-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 25px 25px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+            box-shadow: #0000001a 0px 1px 2px;
             border-radius: 5px;
             background-color: $ice-100;
 
@@ -47,8 +70,11 @@ main {
                 text-align: center;
                 .action-title {
                     padding: 0 0 20px 0;
+                    font: 1.1rem $title;
+                    letter-spacing: 1px;
                     text-transform: uppercase;
                     text-align: left;
+                    color: $accent-100;
                 }
                 .form-row {
                     display: grid;
@@ -58,6 +84,9 @@ main {
                         label {
                             display: block;
                             text-align: left;
+                            font: 0.97rem $text;
+                            letter-spacing: 0.7px;
+                            color: $text-200;
                         }
 
                         input[type=text],
@@ -65,11 +94,18 @@ main {
                             width: 100%;
                             margin: 10px 0 20px 0;
                             padding: 10px 0 10px 8px;
+                            font: 0.92rem $text;
+                            letter-spacing: 0.5px;
+                            color: $text-100;
                             outline: none;
                             border: none;
                             border-radius: 3px;
                             background-color: $ice-500;
                             transition: all 0.2s;
+                        } input[type=text]:hover, input[type=text]:focus,
+                        input[type=password]:hover, input[type=password]:focus {
+                            background-color: $ice-600;
+                            color: $text-200;
                         }
                     }
                 }
@@ -78,13 +114,27 @@ main {
                     width: 100%;
                     margin-bottom: 15px;
                     padding: 8px 0;
+                    font: 0.96rem $text;
                     outline: none;
+                    border-radius: 5px;
                     border: 2px solid $ice-400;
                     background-color: $ice-300;
+                    color: $text-100;
                     transition: all 0.15s;
+                } .submitBtn:hover {
+                    cursor: pointer;
+                    border: 2px solid $accent-100;
+                    background-color: $accent-100;
+                    color: $ice-100;
                 }
                 .action-link {
+                    font: 0.85rem $text;
                     text-align: center;
+                    text-decoration: none;
+                    color: $text-100;
+                    transition: all 0.15s;
+                } .action-link:hover {
+                    color: $text-200;
                 }
             }
         }
