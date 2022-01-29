@@ -1,3 +1,8 @@
+<?php
+    include '../model/pdo/config.php';
+    include '../model/authenticationProcess.php';
+    if (is_session_started() === FALSE) session_start(); // Start a session to display messages.
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +15,21 @@
 <body>
     <main>
         <section class="account-actions">
+            <!-- Check if any messages are set. If so, display them. -->
+            <?php if (isset($_SESSION['err_reqFields'])) {
+                echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_reqFields'] . '</p></div>';
+                unset($_SESSION['err_reqFields']);
+            } elseif (isset($_SESSION['err_matchPass'])) {
+                echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_matchPass'] . '</p></div>';
+                unset($_SESSION['err_matchPass']);
+            } elseif (isset($_SESSION['err_accExists'])) {
+                echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_accExists'] . '</p></div>';
+                unset($_SESSION['err_accExists']);
+            } elseif (isset($_SESSION['suc_accCreated'])) {
+                echo '<div class="account-message-container success"><p class="message">' . $_SESSION['suc_accCreated'] . '</p></div>';
+                unset($_SESSION['suc_accCreated']);
+            } ?>
+
             <div class="account-actions-container">
                 <div class="account-actions-body">
                     <?php if (isset($_GET['register'])) {

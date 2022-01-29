@@ -1,6 +1,52 @@
 <?php 
     function registerAccount() {
+        require 'model/pdo/config.php';
+        if (is_session_started() === FALSE) session_start();
 
+        // Checking if the posts are not empty, if they aren't make sure password is equal to confirmed password.
+        // If the passwords are equal, assign the post values to a variable.
+        if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['mail_address']) && !empty($_POST['password']) && !empty($_POST['confirm_password'])) {
+            if (($_POST['password']) == ($_POST['confirm_password'])) {
+                $first = $_POST['first_name'];
+                $last = $_POST['last_name'];
+                $mail = $_POST['mail_address'];
+                $pass = $_POST['password'];
+                $hash = hash('sha256', $pass);
+    
+                // Prevent duplicates by checking if the user already exists.
+                $fetchExistingAccount = 'SELECT * FROM account WHERE sMailAddress = :post_mail';
+                $stmt = $pdo->prepare($fetchExistingAccount);
+                $stmt->execute([
+                    ':post_mail' => $mail
+                ]);
+    
+                // When a user with the same mail is found, redirect and display a message.
+                if ($stmt->rowCount() > 0) {
+                    $_SESSION['err_accExists'] = 'Account already exists.';
+                    header('location: template/account.php?register');
+                } elseif ($stmt->rowCount() == 0) {
+                    // If the submitted mail doesn't exist, insert the new user.
+                    $insertAccount = 'INSERT INTO account (sFirstname, sLastname, sMailaddress, sPassword)
+                    VALUES (:post_first, :post_last, :post_mail, :post_pass)';
+                    $stmt = $pdo->prepare($insertAccount);
+                    $stmt->execute([
+                        ':post_first' => $first,
+                        ':post_last' => $last,
+                        ':post_mail' => $mail,
+                        ':post_pass' => $hash
+                    ]);
+    
+                    $_SESSION['suc_accCreated'] = 'Account successfully made.';
+                    header('location: template/account.php');
+                }
+            } else {
+                $_SESSION['err_matchPass'] = 'Passwords does not match confirmation.';
+                header('location: template/account.php');
+            }
+        } else {
+            $_SESSION['err_reqFields'] = 'All fields are required.';
+            header('location: template/account.php?register');
+        }
     }
 
     function authenticateAccount() {
