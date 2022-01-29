@@ -14,4 +14,95 @@ html {
 body {
   background-color: #fafbfdd3;
 }
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .account-actions {
+  width: 100%;
+  padding: 0 15px;
+}
+
+main .account-actions .account-actions-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 25px 25px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+main .account-actions .account-actions-container .account-actions-body {
+  text-align: center;
+}
+
+main .account-actions .account-actions-container .account-actions-body .action-title {
+  padding: 0 0 20px 0;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+main .account-actions .account-actions-container .account-actions-body .form-row {
+  display: -ms-grid;
+  display: grid;
+}
+
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container {
+  width: 100%;
+}
+
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container label {
+  display: block;
+  text-align: left;
+}
+
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=text],
+main .account-actions .account-actions-container .account-actions-body .form-row .input-container input[type=password] {
+  width: 100%;
+  margin: 10px 0 20px 0;
+  padding: 10px 0 10px 8px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background-color: #d0d7fc2d;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+main .account-actions .account-actions-container .account-actions-body .submitBtn {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px 0;
+  outline: none;
+  border: 2px solid #ecefff93;
+  background-color: #ecefff1f;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+main .account-actions .account-actions-container .account-actions-body .action-link {
+  text-align: center;
+}
+
+@media (min-width: 500px) {
+  main .account-actions .account-actions-container .account-actions-body #double-input {
+    display: -ms-grid;
+    display: grid;
+    gap: 10px;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
 /*# sourceMappingURL=authForm.css.map */
