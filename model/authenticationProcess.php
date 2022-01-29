@@ -50,7 +50,46 @@
     }
 
     function authenticateAccount() {
+        require 'model/pdo/config.php';
+        if (is_session_started() === FALSE) session_start();
 
+        // Checking if the posts are not empty, if they aren't assign the post values to a variable.
+        if (!empty($_POST['mail_address']) && ($_POST['password'])) {
+            $mail = $_POST['mail_address'];
+            $pass = $_POST['password']; 
+            $hash = hash('sha256', $pass);
+
+            // Make sure the account exists by checking the mail address.
+            $fetchExistingAccount = 'SELECT idUser, sFirstname, sLastname, sPassword FROM account WHERE sMailaddress = :post_mail';
+            $stmt = $pdo->prepare($fetchExistingAccount);
+            $stmt->execute([
+                ':post_mail' => $mail
+            ]);
+
+            // When no account is found, redirect and display a message.
+            if ($stmt->rowCount() == 0) {
+                $_SESSION['err_noAccount'] = 'Account does not exist.';
+                header('location: template/account.php?register');
+            } elseif ($stmt->rowCount() > 0) {
+                // If the account exists, fetch it's data.
+                $account = $stmt->fetch(PDO::FETCH_ASSOC);
+                // Check if the hashed password from the post, equals the stored password. Then start serssions.
+                if ($hash == $account['sPassword']) {
+                    $_SESSION['signedin'] = TRUE;
+                    $_SESSION['id'] = $account['idUser'];
+                    $_SESSION['fname'] = $account['sFirstname'];
+                    // Roles could be added to the session aswell.
+                    
+                    header('Location: template/profile.php');
+                } else {
+                    $_SESSION['err_incPass'] = 'Incorrect password.';
+                    header('location: template/account.php');
+                }
+            }
+        } else {
+            $_SESSION['err_reqFields'] = 'All fields are required.';
+            header('location: template/account.php');
+        }
     }
 
     function disconnectAccount() {

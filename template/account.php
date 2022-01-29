@@ -25,6 +25,12 @@
             } elseif (isset($_SESSION['err_accExists'])) {
                 echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_accExists'] . '</p></div>';
                 unset($_SESSION['err_accExists']);
+            } elseif (isset($_SESSION['err_noAccount'])) {
+                echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_noAccount'] . '</p></div>';
+                unset($_SESSION['err_noAccount']);
+            } elseif (isset($_SESSION['err_incPass'])) {
+                echo '<div class="account-message-container error"><p class="message">' . $_SESSION['err_incPass'] . '</p></div>';
+                unset($_SESSION['err_incPass']);
             } elseif (isset($_SESSION['suc_accCreated'])) {
                 echo '<div class="account-message-container success"><p class="message">' . $_SESSION['suc_accCreated'] . '</p></div>';
                 unset($_SESSION['suc_accCreated']);
